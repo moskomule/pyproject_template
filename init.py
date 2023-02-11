@@ -1,6 +1,6 @@
 import pathlib
 
-def pyproject_toml(owner_name: str, repo_name: str, actor_name: str):
+def pyproject_toml(owner_name: str, repo_name: str):
     content = f"""
 [build-system]
 requires = ["hatchling"]
@@ -14,7 +14,7 @@ requires-python = ">=3.10"
 license = "MIT"
 keywords = []
 authors = [
-    {{ name = "{actor_name}", email = "{actor_name}@users.noreply.github.com" }},
+    {{ name = "{owner_name}", email = "{owner_name}@users.noreply.github.com" }},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -68,7 +68,7 @@ def mkdocs(owner_name: str, repo_name: str):
     content = f"""
 site_name: {repo_name}
 site_description: ...
-site_author: Ryuichiro Hataya
+site_author: {owner_name}
 site_url: https://{owner_name}.github.io/{repo_name}
 repo_name: {owner_name}/{repo_name}
 repo_url: https://github.com/{owner_name}/{repo_name}
@@ -126,12 +126,11 @@ if __name__ == "__main__":
     import argparse
     p = argparse.ArgumentParser()
     p.add_argument("name")
-    p.add_argument("actor")
     args = p.parse_args()
 
     name = args.name
     owner_name, repo_name = name.split("/")
-    pyproject_toml(owner_name, repo_name, args.actor)
+    pyproject_toml(owner_name, repo_name)
     mkdocs(owner_name, repo_name)
     project_dir(repo_name)
     readme(owner_name, repo_name)

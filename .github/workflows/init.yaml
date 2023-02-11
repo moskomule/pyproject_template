@@ -33,7 +33,7 @@ jobs:
       - name: initialization
         if: steps.file_check.outputs.initialized == 'false'
         run: |
-          python init.py ${{ github.repository }} "${GITHUB_ACTOR}"
+          python init.py ${{ github.repository }}
           rm init.py
           rm .github/workflows/init.yaml
           git config --global user.name "${GITHUB_ACTOR}"
