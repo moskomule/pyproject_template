@@ -33,11 +33,11 @@ jobs:
       - name: initialization
         if: steps.file_check.outputs.initialized == 'false'
         run: |
-          python init.py ${{ github.repository }}
+          python init.py ${{ github.repository }} "${GITHUB_ACTOR}"
           rm init.py
           rm .github/workflows/init.yaml
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add .
-          git commit -m "auto initialial commit"
+          git commit -m "auto initial commit"
           git push

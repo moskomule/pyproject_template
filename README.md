@@ -18,3 +18,5 @@ README.md
 ```
 
 After cloning the created repository, edit files according to your needs.
+
+To activate GitHub pages, go to `settings/pages/sources` and change it to `GitHub Actions`, so that the documents will automatically created.
