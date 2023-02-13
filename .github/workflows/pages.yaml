@@ -23,7 +23,7 @@ jobs:
   # Single deploy job since we're just deploying
   deploy:
     runs-on: ubuntu-latest
-    if: "!contains(github.repository, 'template') || !contains(github.event.head_commit.message, 'initial commit')"
+    if: "!(contains(github.repository, 'template') || contains(github.event.head_commit.message, 'initial commit'))"
 
     environment:
       name: github-pages
