@@ -13,17 +13,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-
-      - name: check if initialized
-        id: file_check
-        run: |
-          if [[ -f "pyproject.toml" ]]; then
-            echo "continue"
-            echo "initialized=true" >> $GITHUB_OUTPUT
-          else
-            echo "skip"
-            echo "initialized=false" >> $GITHUB_OUTPUT
-          fi
       
       - name: setup python
         uses: actions/setup-python@v4
@@ -31,7 +20,6 @@ jobs:
           python-version: '3.10'
 
       - name: initialization
-        if: steps.file_check.outputs.initialized == 'false'
         run: |
           python init.py ${{ github.repository }}
           rm init.py
