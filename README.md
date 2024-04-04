@@ -27,7 +27,6 @@ To extend this template, fork this template and name it `*-template` to disable 
 The following section is the template of `README.md`.
 
 ---
-
 # {repo_name}
 
 **This project is work in progress**

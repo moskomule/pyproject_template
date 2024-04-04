@@ -1,5 +1,6 @@
 import pathlib
 
+
 def pyproject_toml(owner_name: str, repo_name: str):
     file = pathlib.Path("pyproject.toml")
 
@@ -10,6 +11,7 @@ def pyproject_toml(owner_name: str, repo_name: str):
 
     with file.open('w') as f:
         f.write(content)
+
 
 def mkdocs(owner_name: str, repo_name: str):
     file = pathlib.Path("mkdocs.yml")
@@ -27,6 +29,7 @@ def mkdocs(owner_name: str, repo_name: str):
     with (docs_root / "index.md").open('w') as f:
         f.write(f"# {repo_name}")
 
+
 def project_dir(repo_name: str):
     root = pathlib.Path(repo_name)
     root.mkdir()
@@ -35,13 +38,14 @@ def project_dir(repo_name: str):
     with (root / "__about__.py").open('w') as f:
         f.write("__version__ = '0.0.1'")
 
+
 def readme(owner_name: str, repo_name: str):
     file = pathlib.Path("README.md")
 
     with file.open('r') as f:
         content = f.read()
 
-    content = content.split('---')[1]
+    content = content.split('---')[1][1:]  # to remove first \n
     content = content.format(owner_name=owner_name, repo_name=repo_name)
 
     with file.open('w') as f:
@@ -50,6 +54,7 @@ def readme(owner_name: str, repo_name: str):
 
 if __name__ == "__main__":
     import argparse
+
     p = argparse.ArgumentParser()
     p.add_argument("name")
     args = p.parse_args()
